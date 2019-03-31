@@ -17,7 +17,7 @@ class Polynomial(object):
             if c!=0:
                 space = " " if len(res) > 0 else ""
                 if i==0:
-                    var_in_degree = ""
+                    var_in_degree = "" if abs(c) != 1 else "1"
                 elif i==1:
                     var_in_degree = "x" +  space
                 else:
@@ -35,7 +35,18 @@ class Polynomial(object):
         return res
 
     def __repr__(self):
-        return str(self.coefficients)
+        return "Polynomial({})".format(self.coefficients)
+
+    def __add__(self, other):
+        c1=self.coefficients
+        c2=other.coefficients
+        l=max(len(c1),len(c2))
+        while len(c1)<l: c1.insert(0,0)
+        while len(c2)<l: c2.insert(0,0)
+        coefficients = list(map(lambda x,y:x+y, self.coefficients, other.coefficients))
+        return Polynomial(list(coefficients))
+
+
 
 
 
