@@ -38,13 +38,46 @@ class Polynomial(object):
         return "Polynomial({})".format(self.coefficients)
 
     def __add__(self, other):
-        c1=self.coefficients
-        c2=other.coefficients
-        l=max(len(c1),len(c2))
-        while len(c1)<l: c1.insert(0,0)
-        while len(c2)<l: c2.insert(0,0)
-        coefficients = list(map(lambda x,y:x+y, self.coefficients, other.coefficients))
-        return Polynomial(list(coefficients))
+        if isinstance(other, Polynomial):
+            c1=self.coefficients
+            c2=other.coefficients
+            l=max(len(c1),len(c2))
+            while len(c1)<l: c1.insert(0,0)
+            while len(c2)<l: c2.insert(0,0)
+            coefficients = list(map(lambda x,y:x+y, self.coefficients, other.coefficients))
+            return Polynomial(list(coefficients))
+        if isinstance(other, int):
+            c=self.coefficients
+            c[len(c)-1]+=other
+            return Polynomial(list(c))
+
+    def __radd__(self, other):
+        if isinstance(other, int):
+            return self + other
+
+    def __sub__(self, other):
+        if isinstance(other, Polynomial):
+            c1=self.coefficients
+            c2=other.coefficients
+            l=max(len(c1),len(c2))
+            while len(c1)<l: c1.insert(0,0)
+            while len(c2)<l: c2.insert(0,0)
+            coefficients = list(map(lambda x,y:x-y, self.coefficients, other.coefficients))
+            return Polynomial(list(coefficients))
+        if isinstance(other, int):
+            c=self.coefficients
+            c[len(c)-1]-=other
+            return Polynomial(list(c))
+
+    def __rsub__(self, other):
+        if isinstance(other, int):
+            c=list(map(lambda x:(-1)*x,self.coefficients))
+            free_member = other+c[len(c)-1]
+            c[len(c)-1]=free_member
+            return Polynomial(c)
+
+    def __eq__(self, other):
+        return self.coefficients == other.coefficients
 
 
 

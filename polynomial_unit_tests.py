@@ -33,3 +33,12 @@ class PolynomialUnitTest(unittest.TestCase):
 
     def test_repr_p3(self):
         self.assertEqual("Polynomial([-2, 0, 0])", repr(self.p3))
+
+    def test_add_p1_p2(self):
+        self.assertEqual(Polynomial([2,-1,3,-2]),self.p1+self.p2)
+
+    def test_add_p2_p3(self):
+        self.assertEqual(Polynomial([-1,-1,3,0]),self.p2+self.p3)
+
+    def test_add_p1_p3(self):
+        self.assertEqual(Polynomial([3,-4,0,-2]),self.p1+self.p3)
