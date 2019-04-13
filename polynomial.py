@@ -5,13 +5,13 @@ class Polynomial(object):
 
     def __init__(self, coeffs):
         if isinstance(coeffs, Polynomial):
-            coeffs=coeffs.coeffs
+            coeffs = coeffs.coeffs
         if isinstance(coeffs, (tuple,)):
             coeffs = list(coeffs)
         self.coeffs = coeffs
 
     @coeffs.setter
-    def coeffs(self,coeffs):
+    def coeffs(self, coeffs):
         if isinstance(coeffs, (list,)):
             i = 0
             while i < len(coeffs):

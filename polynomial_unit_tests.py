@@ -22,8 +22,8 @@ class PolynomialUnitTest(unittest.TestCase):
         self.assertEqual([-2, 0, 0], self.p3.coeffs)
 
     def test_init_polynomial(self):
-        p4 = Polynomial(Polynomial((3,0,-1)))
-        self.assertEqual([3,0,-1],p4.coeffs)
+        p4 = Polynomial(Polynomial((3, 0, -1)))
+        self.assertEqual([3, 0, -1], p4.coeffs)
 
     def test_str_p1(self):
         self.assertEqual("3x^3 - 2x^2 - 2", str(self.p1))
