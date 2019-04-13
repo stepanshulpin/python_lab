@@ -10,16 +10,20 @@ class PolynomialUnitTest(unittest.TestCase):
         self.p3 = Polynomial([0, -2, 0, 0])
 
     def test_init_value_error(self):
-        self.assertRaises(ValueError, Polynomial, [0, 0, 0])
+        self.assertEqual([], Polynomial([0, 0, 0]).coeffs)
 
     def test_init_type_error(self):
         self.assertRaises(TypeError, Polynomial, "Hello")
 
     def test_init_p1(self):
-        self.assertEqual([3, -2, 0, -2], self.p1.coefficients)
+        self.assertEqual([3, -2, 0, -2], self.p1.coeffs)
 
     def test_init_p3(self):
-        self.assertEqual([-2, 0, 0], self.p3.coefficients)
+        self.assertEqual([-2, 0, 0], self.p3.coeffs)
+
+    def test_init_polynomial(self):
+        p4 = Polynomial(Polynomial((3,0,-1)))
+        self.assertEqual([3,0,-1],p4.coeffs)
 
     def test_str_p1(self):
         self.assertEqual("3x^3 - 2x^2 - 2", str(self.p1))
@@ -97,13 +101,13 @@ class PolynomialUnitTest(unittest.TestCase):
         self.assertTrue(self.p1 == Polynomial([3, -2, 0, -2]))
 
     def test_eq_type_error(self):
-        self.assertRaises(TypeError, self.p1.__eq__, "Hello")
+        self.assertFalse(self.p1 == "Hello")
 
     def test_ne_p1(self):
         self.assertTrue(self.p1 != self.p2)
 
     def test_ne_type_error(self):
-        self.assertRaises(TypeError, self.p1.__ne__, "Hello")
+        self.assertTrue(self.p1 != "Hello")
 
     def test_lt_p1_p2(self):
         self.assertFalse(self.p1 < self.p2)
