@@ -9,11 +9,14 @@ class PolynomialUnitTest(unittest.TestCase):
         self.p2 = Polynomial([-1, 1, 3, 0])
         self.p3 = Polynomial([0, -2, 0, 0])
 
-    def test_init_value_error(self):
+    def test_init_empty(self):
         self.assertEqual([], Polynomial([0, 0, 0]).coeffs)
 
     def test_init_type_error(self):
         self.assertRaises(TypeError, Polynomial, "Hello")
+
+    def test_init_value_error(self):
+        self.assertRaises(ValueError, Polynomial, [1, 2, 3.6, "Hello"])
 
     def test_init_p1(self):
         self.assertEqual([3, -2, 0, -2], self.p1.coeffs)

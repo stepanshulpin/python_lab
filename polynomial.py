@@ -13,6 +13,8 @@ class Polynomial(object):
     @coeffs.setter
     def coeffs(self, coeffs):
         if isinstance(coeffs, (list,)):
+            if any(not isinstance(x, (int, float, complex)) for x in coeffs):
+                raise ValueError
             i = 0
             while i < len(coeffs):
                 if coeffs[i] == 0:
